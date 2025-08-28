@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Patient Profile</h2>
+{% if profile %}
+  <p>Name: {{ profile.user.get_full_name }} ({{ profile.user.username }})</p>
+  <p>Contact: {{ profile.contact_number }}</p>
+  <p>Age: {{ profile.age }}</p>
+  <p>Gender: {{ profile.gender }}</p>
+  <p>Address: {{ profile.address }}</p>
+{% else %}<p>No profile info.</p>{% endif %}
+<h3>Medical Records</h3>{% for r in medical_records %}<p>{{ r.title }} - {{ r.description }}</p>{% empty %}<p>No medical records</p>{% endfor %}
+<h3>Medical History</h3>{% for h in histories %}<p>{{ h.date }} - {{ h.diagnosis }} - {{ h.treatment }} (Dr: {{ h.doctor }})</p>{% empty %}<p>No history</p>{% endfor %}
+<h3>Health Education Resources</h3>{% for res in resources %}<p>{{ res.title }} - {{ res.description }}</p>{% empty %}<p>No resources</p>{% endfor %}
+{% endblock %}

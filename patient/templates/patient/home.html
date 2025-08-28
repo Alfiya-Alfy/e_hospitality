@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Patient Home</h2>
+<p><a class="btn btn-secondary" href="{% url 'patient:profile' %}">View Profile</a></p>
+<h3>Your Appointments</h3>
+{% for a in appointments %}<div class='card mb-2'><div class='card-body'>{{ a.date }} - Doctor: {{ a.doctor }} - Status: {{ a.status }}</div></div>{% empty %}<p>No appointments yet.</p>{% endfor %}
+<h3>Your Invoices</h3>
+{% for inv in invoices %}<p>{{ inv.description }} - {{ inv.amount }} - {% if inv.paid %}Paid{% else %}<a href="{% url 'patient:pay_invoice' inv.id %}">Pay</a>{% endif %}</p>{% empty %}<p>No invoices</p>{% endfor %}
+<h3>Your Medical History</h3>
+{% for h in histories %}<p>{{ h.date }} - {{ h.diagnosis }} (Dr: {{ h.doctor }})</p>{% empty %}<p>No history</p>{% endfor %}
+<h3>Health Education Resources</h3>
+{% for r in resources %}<p><strong>{{ r.title }}</strong> - {{ r.description }} {% if r.link %}<a href='{{ r.link }}'>Read</a>{% endif %}</p>{% empty %}<p>No resources yet.</p>{% endfor %}
+<h3>Facilities</h3>
+{% for f in facilities %}<p>{{ f.name }} - {{ f.description }}</p>{% empty %}<p>No facilities.</p>{% endfor %}
+{% endblock %}

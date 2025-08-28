@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<h2>Your Appointments</h2>{% for a in appointments %}<p>{{ a.date }} - {{ a.doctor }} - {{ a.status }}</p>{% empty %}<p>No appointments</p>{% endfor %}{% endblock %}

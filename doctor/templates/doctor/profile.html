@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<h2>Doctor Profile</h2>{% if profile %}<p>{{ profile.user.get_full_name }} - {{ profile.specialization }}</p>{% else %}<p>No profile</p>{% endif %}{% endblock %}

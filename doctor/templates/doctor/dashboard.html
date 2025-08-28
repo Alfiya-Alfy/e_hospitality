@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}
+<h2>Doctor Dashboard</h2>
+{% if profile %}<p>Dr {{ profile.user.get_full_name }} - {{ profile.specialization }}</p>{% endif %}
+<p><a class='btn btn-secondary' href='{% url "doctor:add_history" %}'>Add Patient History</a> <a class='btn btn-secondary' href='{% url "doctor:create_invoice" %}'>Create Invoice</a></p>
+<h3>Facilities</h3>{% for f in facilities %}<p>{{ f.name }} - {{ f.description }}</p>{% empty %}<p>No facilities</p>{% endfor %}
+<h3>Health Education Resources</h3>{% for r in resources %}<p>{{ r.title }} - {{ r.description }}</p>{% empty %}<p>No resources</p>{% endfor %}
+{% endblock %}
